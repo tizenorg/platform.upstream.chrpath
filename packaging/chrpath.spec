@@ -6,6 +6,7 @@ Summary:        Modify rpath of compiled programs
 Url:            http://www.tux.org/pub/X-Windows/ftp.hungry.com/chrpath/
 Group:          Development/Tools
 Source0:        http://www.tux.org/pub/X-Windows/ftp.hungry.com/chrpath/%{name}-%{version}.tar.gz
+Source1001: 	chrpath.manifest
 
 %description
 chrpath allows you to modify the dynamic library load path (rpath) of
@@ -14,6 +15,7 @@ is supported.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 
 %build
@@ -28,6 +30,7 @@ make %{?_smp_mflags}
 rm -fr %{buildroot}/usr/doc
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING README
 %{_bindir}/chrpath
